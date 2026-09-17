@@ -1,0 +1,22 @@
+{
+    "project": "AI Autonomous Software Reliability & Optimization System",
+    "models": {
+        "anomaly_detection": {
+            "file": "anomaly_detection_model.pkl",
+            "features_file": "anomaly_features.json",
+            "type": "IsolationForest",
+            "purpose": "Detect abnormal runtime behaviour"
+        },
+        "failure_risk": {
+            "file": "failure_risk_model.pkl",
+            "features_file": "failure_features.json",
+            "type": "XGBoost",
+            "purpose": "Predict anomaly-derived failure risk"
+        }
+    },
+    "runtime_features": 28,
+    "training_rows": 1430,
+    "memory_leak_detection": "heuristic risk scoring",
+    "dependency_intelligence": "service dependency graph",
+    "optimization_engine": "rule-based recommendation engine"
+}

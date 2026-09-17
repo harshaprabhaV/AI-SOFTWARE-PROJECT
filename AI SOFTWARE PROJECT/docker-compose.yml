@@ -1,0 +1,35 @@
+services:
+
+  runtime:
+    build:
+      context: ./docker
+    container_name: ai-reliability-runtime
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: ai-reliability-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dashboard
+    container_name: ai-reliability-dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:8000
+    command: streamlit run streamlit/dashboard.py --server.address=0.0.0.0 --server.port=8501

@@ -1,0 +1,13 @@
+[
+    "cpu_usage",
+    "memory_usage",
+    "disk_usage",
+    "cpu_std_5",
+    "memory_std_5",
+    "cpu_change",
+    "memory_change",
+    "disk_change",
+    "cpu_trend",
+    "memory_trend",
+    "disk_trend"
+]

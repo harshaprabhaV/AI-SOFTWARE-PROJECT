@@ -1,0 +1,46 @@
+{
+    "nodes": [
+        "nova-api.log",
+        "nova-scheduler.log",
+        "nova-compute.log"
+    ],
+    "edges": [
+        {
+            "source": "nova-api.log",
+            "target": "nova-scheduler.log"
+        },
+        {
+            "source": "nova-scheduler.log",
+            "target": "nova-compute.log"
+        },
+        {
+            "source": "nova-api.log",
+            "target": "nova-compute.log"
+        }
+    ],
+    "services": {
+        "nova-api.log": {
+            "direct_dependencies": 2,
+            "downstream_services": 2,
+            "affected_services": [
+                "nova-scheduler.log",
+                "nova-compute.log"
+            ],
+            "dependency_risk": 0.3667612863
+        },
+        "nova-scheduler.log": {
+            "direct_dependencies": 1,
+            "downstream_services": 1,
+            "affected_services": [
+                "nova-compute.log"
+            ],
+            "dependency_risk": 0.2041570439
+        },
+        "nova-compute.log": {
+            "direct_dependencies": 0,
+            "downstream_services": 0,
+            "affected_services": [],
+            "dependency_risk": 0.0584833695
+        }
+    }
+}
